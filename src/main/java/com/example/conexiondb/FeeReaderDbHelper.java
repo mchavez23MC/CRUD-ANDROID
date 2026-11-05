@@ -1,4 +1,4 @@
-package com.example.testclase1.conexiondb;
+package com.example.conexiondb;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
