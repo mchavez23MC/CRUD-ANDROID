@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:clipToPadding="false"
-    tools:context=".MainActivity">
+    tools:context="com.example.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -90,6 +90,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCrear"
+                android:onClick="guardar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -99,6 +100,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnConsultar"
+                android:onClick="buscar"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -115,6 +117,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnActualizar"
+                android:onClick="actualizar"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -125,6 +128,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEliminar"
+                android:onClick="eliminar"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -134,5 +138,15 @@
                 android:textColor="?attr/colorError"
                 app:strokeColor="?attr/colorError" />
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnListar"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:minHeight="48dp"
+            android:onClick="listar"
+            android:text="@string/action_list" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

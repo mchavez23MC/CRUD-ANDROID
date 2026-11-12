@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         String nombre = txtNombre.getText().toString().trim();
         String apellido = txtApellido.getText().toString().trim();
         if (nombre.isEmpty() || apellido.isEmpty()){
-            mostratMensaje("Ingrese nombre o apellido");
+            mostrarMensaje("Ingrese nombre o apellido");
             return;
         }
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             mostrarMensaje("No se guardo el registro");
         }else {
             txtId.setText(String.valueOf(newRowId));
-            mostrarMensaje("Se guardo con exito")
+            mostrarMensaje("Se guardo con exito");
         }
     }
 
@@ -120,6 +121,39 @@ public class MainActivity extends AppCompatActivity {
         } else {
             mostrarMensaje("No existe un registro con clave: " + id);
         }
+    }
+
+    public void eliminar(View view){
+        String id = leerId();
+        if (id == null) return;
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String selection = FeeReaderContract.FeedEntry._ID + " = ?";
+        String[] selectionArgs = {id};
+        int deletedRows = db.delete(FeeReaderContract.FeedEntry.nameTable, selection, selectionArgs);
+        if (deletedRows > 0) {
+            limpiarCampos();
+        }
+        mostrarMensaje("Se eliminó " + deletedRows + " registro(s)");
+    }
+
+    private void limpiarCampos(){
+        txtId.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+    }
+
+    private String leerId(){
+        String id = txtId.getText().toString().trim();
+        if(id.isEmpty()){
+            mostrarMensaje("Ingrese el ID del registro");
+            return null;
+        }
+        return id;
+    }
+
+    private void mostrarMensaje(String mensaje){
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
     }
 
 }

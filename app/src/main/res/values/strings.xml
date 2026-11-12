@@ -10,5 +10,6 @@
     <string name="action_update">Actualizar</string>
     <string name="action_delete">Eliminar</string>
     <string name="action_back">Regresar</string>
+    <string name="action_list">Listar</string>
     <string name="list_empty">No se encontraron resultados.</string>
 </resources>
